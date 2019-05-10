@@ -5,7 +5,7 @@ namespace ProjectEuler.Problems
     /// <summary>
     ///     Multiples of 3 and 5
     /// </summary>
-    public class Problem0001 : IProblem
+    public class Problem0001
     {
         public object GetResult()
         {
