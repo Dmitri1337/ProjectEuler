@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 
 namespace ProjectEuler.Math
 {
@@ -30,6 +31,37 @@ namespace ProjectEuler.Math
                         sieve[g] = false;
 
             return sieve;
+        }
+
+        public static IReadOnlyCollection<PrimePower> Factorize(int number)
+        {
+            if (number > MaxPrime)
+                throw new ArgumentOutOfRangeException(nameof(number), $"Cannot be greater than {MaxPrime}.");
+
+            if (number < 2)
+                throw new ArgumentOutOfRangeException(nameof(number), "Cannot be less than 2.");
+
+            var result = new List<PrimePower>();
+            int n = number;
+
+            for (int prime = 2; prime <= MaxPrime && n > 1; prime++)
+            {
+                if (!IsPrime(prime))
+                    continue;
+
+                int power = 0;
+                
+                while (n % prime == 0)
+                {
+                    power++;
+                    n /= prime;
+                }
+
+                if (power > 0)
+                    result.Add(new PrimePower(prime, power));
+            }
+
+            return result.AsReadOnly();
         }
     }
 }

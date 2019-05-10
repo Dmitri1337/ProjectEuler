@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using FluentAssertions;
 using NUnit.Framework;
 using ProjectEuler.Math;
@@ -9,86 +11,181 @@ namespace ProjectEuler.Tests.Math
     public class PrimesTests
     {
         [TestFixture]
-        public class WhenCheckingNegativeNumber
+        public class WhenCheckingForPrimality
         {
-            [Test]
-            public void ShouldReturnFalse()
+            [TestFixture]
+            public class AndNumberIsNegative
             {
-                Primes.IsPrime(-3).Should().BeFalse();
+                [Test]
+                public void ShouldReturnFalse()
+                {
+                    Primes.IsPrime(-3).Should().BeFalse();
+                }
+            }
+
+            [TestFixture]
+            public class AndNumberIsZero
+            {
+                [Test]
+                public void ShouldReturnFalse()
+                {
+                    Primes.IsPrime(0).Should().BeFalse();
+                }
+            }
+
+            [TestFixture]
+            public class AndNumberIsOne
+            {
+                [Test]
+                public void ShouldReturnFalse()
+                {
+                    Primes.IsPrime(1).Should().BeFalse();
+                }
+            }
+
+            [TestFixture]
+            public class AndNumberIsPrime
+            {
+                [Test]
+                public void ShouldReturnTrue()
+                {
+                    Primes.IsPrime(2).Should().BeTrue();
+                    Primes.IsPrime(3).Should().BeTrue();
+                    Primes.IsPrime(5).Should().BeTrue();
+                    Primes.IsPrime(7).Should().BeTrue();
+                    Primes.IsPrime(11).Should().BeTrue();
+                    Primes.IsPrime(13).Should().BeTrue();
+                    Primes.IsPrime(17).Should().BeTrue();
+                }
+            }
+
+            [TestFixture]
+            public class AndNumberIsNonPrime
+            {
+                [Test]
+                public void ShouldReturnFalse()
+                {
+                    Primes.IsPrime(4).Should().BeFalse();
+                    Primes.IsPrime(6).Should().BeFalse();
+                    Primes.IsPrime(8).Should().BeFalse();
+                    Primes.IsPrime(9).Should().BeFalse();
+                    Primes.IsPrime(10).Should().BeFalse();
+                    Primes.IsPrime(12).Should().BeFalse();
+                    Primes.IsPrime(14).Should().BeFalse();
+                }
+            }
+
+            [TestFixture]
+            public class AndNumberIsOneMillion
+            {
+                [Test]
+                public void ShouldReturnFalse()
+                {
+                    Primes.IsPrime(1000000).Should().BeFalse();
+                }
+            }
+
+            [TestFixture]
+            public class AndNumberIsLargerThanOneMillion
+            {
+                [Test]
+                public void ShouldThrow()
+                {
+                    Func<bool> f = () => Primes.IsPrime(1000001);
+
+                    f.Should().Throw<ArgumentOutOfRangeException>();
+                }
             }
         }
 
         [TestFixture]
-        public class WhenCheckingZero
+        public class WhenFactorizing
         {
-            [Test]
-            public void ShouldReturnFalse()
+            [TestFixture]
+            public class AndNumberIsNegative
             {
-                Primes.IsPrime(0).Should().BeFalse();
+                [Test]
+                public void ShouldThrow()
+                {
+                    Func<IEnumerable<PrimePower>> f = () => Primes.Factorize(-3);
+                    f.Should().Throw<ArgumentOutOfRangeException>();
+                }
             }
-        }
 
-        [TestFixture]
-        public class WhenCheckingOne
-        {
-            [Test]
-            public void ShouldReturnFalse()
+            [TestFixture]
+            public class AndNumberIsZero
             {
-                Primes.IsPrime(1).Should().BeFalse();
+                [Test]
+                public void ShouldThrow()
+                {
+                    Func<IEnumerable<PrimePower>> f = () => Primes.Factorize(0);
+                    f.Should().Throw<ArgumentOutOfRangeException>();
+                }
             }
-        }
 
-        [TestFixture]
-        public class WhenCheckingPrime
-        {
-            [Test]
-            public void ShouldReturnTrue()
+            [TestFixture]
+            public class AndNumberIsOne
             {
-                Primes.IsPrime(2).Should().BeTrue();
-                Primes.IsPrime(3).Should().BeTrue();
-                Primes.IsPrime(5).Should().BeTrue();
-                Primes.IsPrime(7).Should().BeTrue();
-                Primes.IsPrime(11).Should().BeTrue();
-                Primes.IsPrime(13).Should().BeTrue();
-                Primes.IsPrime(17).Should().BeTrue();
+                [Test]
+                public void ShouldThrow()
+                {
+                    Func<IEnumerable<PrimePower>> f = () => Primes.Factorize(1);
+                    f.Should().Throw<ArgumentOutOfRangeException>();
+                }
             }
-        }
 
-        [TestFixture]
-        public class WhenCheckingNonPrime
-        {
-            [Test]
-            public void ShouldReturnFalse()
+            [TestFixture]
+            public class AndNumberIsPrime
             {
-                Primes.IsPrime(4).Should().BeFalse();
-                Primes.IsPrime(6).Should().BeFalse();
-                Primes.IsPrime(8).Should().BeFalse();
-                Primes.IsPrime(9).Should().BeFalse();
-                Primes.IsPrime(10).Should().BeFalse();
-                Primes.IsPrime(12).Should().BeFalse();
-                Primes.IsPrime(14).Should().BeFalse();
+                [Test]
+                public void ShouldReturnWithPowerOne()
+                {
+                    PrimePower[] primePowers = Primes.Factorize(13).ToArray();
+
+                    primePowers.Length.Should().Be(1);
+                    primePowers[0].Prime.Should().Be(13);
+                    primePowers[0].Power.Should().Be(1);
+                }
             }
-        }
 
-        [TestFixture]
-        public class WhenCheckingOneMillion
-        {
-            [Test]
-            public void ShouldReturnFalse()
+            [TestFixture]
+            public class AndNumberIsNonPrime
             {
-                Primes.IsPrime(1000000).Should().BeFalse();
+                [Test]
+                public void ShouldReturnPrimePowerCollection()
+                {
+                    PrimePower[] primePowers = Primes.Factorize(369).ToArray();
+
+                    primePowers.Length.Should().Be(2);
+
+                    primePowers[0].Prime.Should().Be(3);
+                    primePowers[0].Power.Should().Be(2);
+
+                    primePowers[1].Prime.Should().Be(41);
+                    primePowers[1].Power.Should().Be(1);
+                }
             }
-        }
 
-        [TestFixture]
-        public class WhenCheckingLargerThanOneMillion
-        {
-            [Test]
-            public void ShouldThrow()
+            [TestFixture]
+            public class AndNumberIsOneMillion
             {
-                Func<bool> f = () => Primes.IsPrime(1000001);
+                [Test]
+                public void ShouldSucceed()
+                {
+                    Primes.Factorize(1000000).Should().NotBeEmpty();
+                }
+            }
 
-                f.Should().Throw<ArgumentOutOfRangeException>();
+            [TestFixture]
+            public class AndNumberIsLargerThanOneMillion
+            {
+                [Test]
+                public void ShouldThrow()
+                {
+                    Func<IEnumerable<PrimePower>> f = () => Primes.Factorize(1000001);
+
+                    f.Should().Throw<ArgumentOutOfRangeException>();
+                }
             }
         }
     }
