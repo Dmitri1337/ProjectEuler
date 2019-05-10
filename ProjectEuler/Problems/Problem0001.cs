@@ -2,6 +2,9 @@
 
 namespace ProjectEuler.Problems
 {
+    /// <summary>
+    ///     Multiples of 3 and 5
+    /// </summary>
     public class Problem0001 : IProblem
     {
         public object GetResult()
@@ -16,7 +19,7 @@ namespace ProjectEuler.Problems
             var fives = new ArithmeticProgression(5, 5);
             var fifteens = new ArithmeticProgression(15, 15);
 
-            return (int)(threes.GetSum(threesCount) + fives.GetSum(fivesCount) - fifteens.GetSum(fifteensCount));
+            return (int) (threes.GetSum(threesCount) + fives.GetSum(fivesCount) - fifteens.GetSum(fifteensCount));
         }
     }
 }
