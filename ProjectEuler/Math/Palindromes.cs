@@ -4,7 +4,7 @@ namespace ProjectEuler.Math
 {
     public static class Palindromes
     {
-        public static int GetReversed(int number)
+        public static int GetReversed(int number, int radix = 10)
         {
             if (number < 0)
                 throw new ArgumentOutOfRangeException(nameof(number), "Must be greater or equal to zero.");
@@ -13,20 +13,23 @@ namespace ProjectEuler.Math
 
             while (number > 0)
             {
-                reversedNumber *= 10;
-                reversedNumber += number % 10;
-                number /= 10;
+                reversedNumber *= radix;
+                reversedNumber += number % radix;
+                number /= radix;
             }
 
             return reversedNumber;
         }
 
-        public static bool IsPalindrome(int number)
+        public static bool IsPalindrome(int number, int radix = 10)
         {
             if (number < 0)
                 throw new ArgumentOutOfRangeException(nameof(number), "Must be greater or equal to zero.");
+
+            if (radix < 2)
+                throw new ArgumentOutOfRangeException(nameof(radix), "Must be greater than one.");
             
-            return number == GetReversed(number);
+            return number == GetReversed(number, radix);
         }
     }
 }
