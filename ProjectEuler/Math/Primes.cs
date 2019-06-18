@@ -6,7 +6,7 @@ namespace ProjectEuler.Math
 {
     public static class Primes
     {
-        private const int MaxPrime = 1000000;
+        private const int MaxPrime = 2000000;
 
         private static readonly BitArray Sieve = GetSieve();
 
