@@ -175,18 +175,6 @@ namespace ProjectEuler.Tests.Math
                     Primes.Factorize(1000000).Should().NotBeEmpty();
                 }
             }
-
-            [TestFixture]
-            public class AndNumberIsLargerThanTwoMillion
-            {
-                [Test]
-                public void ShouldThrow()
-                {
-                    Func<IEnumerable<PrimePower>> f = () => Primes.Factorize(2000001);
-
-                    f.Should().Throw<ArgumentOutOfRangeException>();
-                }
-            }
         }
     }
 }

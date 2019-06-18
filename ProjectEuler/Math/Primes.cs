@@ -7,6 +7,7 @@ namespace ProjectEuler.Math
     public static class Primes
     {
         private const int MaxPrime = 2000000;
+        private const long MaxFactorize = (long)MaxPrime * MaxPrime;
 
         private static readonly BitArray Sieve = GetSieve();
 
@@ -35,9 +36,6 @@ namespace ProjectEuler.Math
 
         public static IReadOnlyCollection<PrimePower> Factorize(int number)
         {
-            if (number > MaxPrime)
-                throw new ArgumentOutOfRangeException(nameof(number), $"Cannot be greater than {MaxPrime}.");
-
             if (number < 2)
                 throw new ArgumentOutOfRangeException(nameof(number), "Cannot be less than 2.");
 
