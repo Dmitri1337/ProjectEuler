@@ -5,7 +5,6 @@
     /// </summary>
     public class Problem0009
     {
-        
         public object GetResult()
         {
             // the result can also be calculated using Wolfram Alpha:

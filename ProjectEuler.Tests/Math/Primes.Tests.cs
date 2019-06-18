@@ -86,12 +86,12 @@ namespace ProjectEuler.Tests.Math
             }
 
             [TestFixture]
-            public class AndNumberIsLargerThanOneMillion
+            public class AndNumberIsLargerThanTwoMillion
             {
                 [Test]
                 public void ShouldThrow()
                 {
-                    Func<bool> f = () => Primes.IsPrime(1000001);
+                    Func<bool> f = () => Primes.IsPrime(2000001);
 
                     f.Should().Throw<ArgumentOutOfRangeException>();
                 }
@@ -177,12 +177,12 @@ namespace ProjectEuler.Tests.Math
             }
 
             [TestFixture]
-            public class AndNumberIsLargerThanOneMillion
+            public class AndNumberIsLargerThanTwoMillion
             {
                 [Test]
                 public void ShouldThrow()
                 {
-                    Func<IEnumerable<PrimePower>> f = () => Primes.Factorize(1000001);
+                    Func<IEnumerable<PrimePower>> f = () => Primes.Factorize(2000001);
 
                     f.Should().Throw<ArgumentOutOfRangeException>();
                 }
