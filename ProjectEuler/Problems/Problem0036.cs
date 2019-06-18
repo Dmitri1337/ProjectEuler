@@ -10,7 +10,7 @@ namespace ProjectEuler.Problems
     {
         public object GetResult()
         {
-            const int max = 1000000;
+            const int max = 100000000;
 
             return Enumerable.Range(0, max)
                 .Where(x => Palindromes.IsPalindrome(x, 2) && Palindromes.IsPalindrome(x))

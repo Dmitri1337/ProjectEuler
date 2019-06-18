@@ -28,7 +28,7 @@ namespace ProjectEuler.Math
 
             if (radix < 2)
                 throw new ArgumentOutOfRangeException(nameof(radix), "Must be greater than one.");
-            
+
             return number == GetReversed(number, radix);
         }
     }
