@@ -62,12 +62,26 @@ namespace ProjectEuler.Math
             return result.AsReadOnly();
         }
 
-        public static IEnumerable<int> GetProperDivisors(int n)
+        public static IEnumerable<int> GetProperDivisors(int number)
         {
-            if (n < 1)
-                throw new ArgumentOutOfRangeException(nameof(n), "Must be greater than zero.");
+            if (number < 1)
+                throw new ArgumentOutOfRangeException(nameof(number), "Must be greater than zero.");
 
-            return Enumerable.Range(1, n / 2).Where(x => n % x == 0).ToList().AsReadOnly();
+            var result = new List<int> { 1 };
+            int sqrt = (int)System.Math.Sqrt(number) + 1;
+
+            for (int i = 2; i < sqrt; i++)
+            {
+                if (number % i != 0)
+                    continue;
+
+                int v = number / i;
+                result.Add(v);
+                if (v != i)
+                    result.Add(i);
+            }
+
+            return result.AsReadOnly();
         }
     }
 }
