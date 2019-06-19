@@ -9,14 +9,10 @@ namespace ProjectEuler
         {
             Console.Write("Calculating result...");
 
-            object result = new Problem0067().GetResult();
+            object result = new Problem0019().GetResult();
 
-            Console.WriteLine(" done.");
             Console.WriteLine($"Result: {result}");
-
             Console.WriteLine();
-            Console.WriteLine("Press any key to continue...");
-            Console.ReadKey(true);
         }
     }
 }
