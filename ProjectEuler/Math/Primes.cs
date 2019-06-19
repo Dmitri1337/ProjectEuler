@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace ProjectEuler.Math
 {
     public static class Primes
     {
         private const int MaxPrime = 2000000;
-        private const long MaxFactorize = (long)MaxPrime * MaxPrime;
 
         private static readonly BitArray Sieve = GetSieve();
 
@@ -60,6 +60,14 @@ namespace ProjectEuler.Math
             }
 
             return result.AsReadOnly();
+        }
+
+        public static IEnumerable<int> GetProperDivisors(int n)
+        {
+            if (n < 1)
+                throw new ArgumentOutOfRangeException(nameof(n), "Must be greater than zero.");
+
+            return Enumerable.Range(1, n / 2).Where(x => n % x == 0).ToList().AsReadOnly();
         }
     }
 }
