@@ -9,7 +9,7 @@ namespace ProjectEuler
         {
             Console.Write("Calculating result...");
 
-            object result = new Problem0019().GetResult();
+            object result = new Problem0020().GetResult();
 
             Console.WriteLine($"Result: {result}");
             Console.WriteLine();
