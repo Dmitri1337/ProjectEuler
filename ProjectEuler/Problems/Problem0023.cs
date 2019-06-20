@@ -1,5 +1,5 @@
 ﻿using System.Linq;
-using ProjectEuler.Math;
+using ProjectEuler.Math.Primes;
 
 namespace ProjectEuler.Problems
 {
@@ -21,7 +21,6 @@ namespace ProjectEuler.Problems
                 int abundantSum = abundantNumbers[a] + abundantNumbers[b];
                 if (abundantSum < nonAbundantSums.Length)
                     nonAbundantSums[abundantSum] = 0;
-                
             }
 
             return nonAbundantSums.Sum();
@@ -29,7 +28,7 @@ namespace ProjectEuler.Problems
 
         private static bool IsAbundantNumber(int number)
         {
-            return Primes.GetProperDivisors(number).Sum() > number;
+            return number.GetProperDivisors().Sum() > number;
         }
     }
 }

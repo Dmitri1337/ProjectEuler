@@ -1,5 +1,5 @@
 ﻿using System.Linq;
-using ProjectEuler.Math;
+using ProjectEuler.Math.Primes;
 
 namespace ProjectEuler.Problems
 {
@@ -13,11 +13,11 @@ namespace ProjectEuler.Problems
             const int max = 20;
 
             return Enumerable.Range(2, max - 1)
-                .SelectMany(Primes.Factorize)
+                .SelectMany(x => x.GetPrimeFactors())
                 .GroupBy(x => x.Prime)
-                .Select(x => x.OrderByDescending(y => y.Power).First())
+                .Select(x => x.OrderByDescending(y => y.Exponent).First())
                 .Select(x => x.ToLong())
-                .Aggregate((long) 1, (x, y) => x * y);
+                .Aggregate((long)1, (x, y) => x * y);
         }
     }
 }

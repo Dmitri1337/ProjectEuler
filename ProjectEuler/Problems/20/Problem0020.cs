@@ -10,7 +10,7 @@ namespace ProjectEuler.Problems
     {
         public object GetResult()
         {
-            return Factorial.Get(100).ToString().Select(x => x - 48).Sum();
+            return 100.GetFactorial().ToString().Select(x => x - 48).Sum();
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using System;
 using FluentAssertions;
 using NUnit.Framework;
-using ProjectEuler.Math;
+using ProjectEuler.Math.Primes;
 
 namespace ProjectEuler.Tests.Math
 {
@@ -17,7 +17,7 @@ namespace ProjectEuler.Tests.Math
                 [Test]
                 public void ShouldThrow()
                 {
-                    Func<PrimePower> f = () => new PrimePower(4, 1);
+                    Func<PrimeFactor> f = () => new PrimeFactor(4, 1);
                     f.Should().Throw<ArgumentOutOfRangeException>();
                 }
             }
@@ -28,7 +28,7 @@ namespace ProjectEuler.Tests.Math
                 [Test]
                 public void ShouldThrow()
                 {
-                    Func<PrimePower> f = () => new PrimePower(15476899, 1);
+                    Func<PrimeFactor> f = () => new PrimeFactor(15476899, 1);
                     f.Should().Throw<ArgumentOutOfRangeException>();
                 }
             }
@@ -39,7 +39,7 @@ namespace ProjectEuler.Tests.Math
                 [Test]
                 public void ShouldThrow()
                 {
-                    Func<PrimePower> f = () => new PrimePower(5, 0);
+                    Func<PrimeFactor> f = () => new PrimeFactor(5, 0);
                     f.Should().Throw<ArgumentOutOfRangeException>();
                 }
             }
@@ -50,7 +50,7 @@ namespace ProjectEuler.Tests.Math
                 [Test]
                 public void ShouldThrow()
                 {
-                    Func<PrimePower> f = () => new PrimePower(5, -3);
+                    Func<PrimeFactor> f = () => new PrimeFactor(5, -3);
                     f.Should().Throw<ArgumentOutOfRangeException>();
                 }
             }
@@ -61,7 +61,7 @@ namespace ProjectEuler.Tests.Math
                 [Test]
                 public void ShouldSucceed()
                 {
-                    Func<PrimePower> f = () => new PrimePower(5, 33);
+                    Func<PrimeFactor> f = () => new PrimeFactor(5, 33);
                     f.Should().NotThrow();
                 }
             }
@@ -73,9 +73,9 @@ namespace ProjectEuler.Tests.Math
             [Test]
             public void ShouldSucceed()
             {
-                new PrimePower(2, 1).ToLong().Should().Be(2);
-                new PrimePower(2, 4).ToLong().Should().Be(16);
-                new PrimePower(3, 5).ToLong().Should().Be(3*3*3*3*3);
+                new PrimeFactor(2, 1).ToLong().Should().Be(2);
+                new PrimeFactor(2, 4).ToLong().Should().Be(16);
+                new PrimeFactor(3, 5).ToLong().Should().Be(3 * 3 * 3 * 3 * 3);
             }
         }
     }

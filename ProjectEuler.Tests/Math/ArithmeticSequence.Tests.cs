@@ -16,7 +16,7 @@ namespace ProjectEuler.Tests.Math
                 [Test]
                 public void ShouldReturnInitialTerm()
                 {
-                    var progression = new ArithmeticSequence(42, 3.14M);
+                    var progression = new ArithmeticSequence(42, 314);
                     decimal firstTerm = progression.GetTerm(1);
 
                     firstTerm.Should().Be(42);
@@ -29,10 +29,10 @@ namespace ProjectEuler.Tests.Math
                 [Test]
                 public void ShouldReturnCorrectTerm()
                 {
-                    var progression = new ArithmeticSequence(42, 3.14M);
+                    var progression = new ArithmeticSequence(42, 314);
                     decimal term42 = progression.GetTerm(42);
 
-                    term42.Should().Be(42 + 3.14M * 41);
+                    term42.Should().Be(42 + 314 * 41);
                 }
             }
         }
@@ -46,7 +46,7 @@ namespace ProjectEuler.Tests.Math
                 [Test]
                 public void ShouldReturnInitialTerm()
                 {
-                    var progression = new ArithmeticSequence(42, 3.14M);
+                    var progression = new ArithmeticSequence(42, 314);
                     decimal firstTerm = progression.GetSum(1);
 
                     firstTerm.Should().Be(42);

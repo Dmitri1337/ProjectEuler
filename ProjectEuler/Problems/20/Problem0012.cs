@@ -1,5 +1,5 @@
 ﻿using System.Linq;
-using ProjectEuler.Math;
+using ProjectEuler.Math.Primes;
 
 namespace ProjectEuler.Problems
 {
@@ -19,9 +19,7 @@ namespace ProjectEuler.Problems
                 number += addend;
                 addend++;
 
-                numberOfFactors = Primes.Factorize(number)
-                    .Select(x => x.Power + 1)
-                    .Aggregate(1, (a, b) => a * b);
+                numberOfFactors = number.GetProperDivisors().Count() + 1;
             }
 
             return number;

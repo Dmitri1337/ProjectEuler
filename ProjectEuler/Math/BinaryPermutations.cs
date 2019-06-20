@@ -7,7 +7,7 @@ namespace ProjectEuler.Math
         public static BigInteger GetPermutationsCount(int bitCount, int onesCount)
         {
             int zeroesCount = bitCount - onesCount;
-            return Factorial.Get(bitCount) / (Factorial.Get(onesCount) * Factorial.Get(zeroesCount));
+            return bitCount.GetFactorial() / (onesCount.GetFactorial() * zeroesCount.GetFactorial());
         }
     }
 }

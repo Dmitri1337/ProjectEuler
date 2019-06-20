@@ -1,5 +1,5 @@
 ﻿using System.Linq;
-using ProjectEuler.Math;
+using ProjectEuler.Math.Primes;
 
 namespace ProjectEuler.Problems
 {

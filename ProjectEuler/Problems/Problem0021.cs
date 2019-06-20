@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using ProjectEuler.Math;
+using ProjectEuler.Math.Primes;
 
 namespace ProjectEuler.Problems
 {
@@ -36,8 +36,8 @@ namespace ProjectEuler.Problems
                 return false;
             }
 
-            int b = Primes.GetProperDivisors(n).Sum();
-            int a = Primes.GetProperDivisors(b).Sum();
+            int b = n.GetProperDivisors().Sum();
+            int a = b.GetProperDivisors().Sum();
 
             if (a == b)
             {

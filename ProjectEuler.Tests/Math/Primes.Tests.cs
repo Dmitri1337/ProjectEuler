@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using FluentAssertions;
 using NUnit.Framework;
-using ProjectEuler.Math;
+using ProjectEuler.Math.Primes;
 
 namespace ProjectEuler.Tests.Math
 {
@@ -64,28 +64,6 @@ namespace ProjectEuler.Tests.Math
                     14.IsPrime().Should().BeFalse();
                 }
             }
-
-            [TestFixture]
-            public class AndNumberIsOneMillion
-            {
-                [Test]
-                public void ShouldReturnFalse()
-                {
-                    1000000.IsPrime().Should().BeFalse();
-                }
-            }
-
-            [TestFixture]
-            public class AndNumberIsLargerThanTwoMillion
-            {
-                [Test]
-                public void ShouldThrow()
-                {
-                    Func<bool> f = () => 2000001.IsPrime();
-
-                    f.Should().Throw<ArgumentOutOfRangeException>();
-                }
-            }
         }
 
         [TestFixture]
@@ -95,10 +73,10 @@ namespace ProjectEuler.Tests.Math
             public class AndNumberIsNegative
             {
                 [Test]
-                public void ShouldThrow()
+                public void ShouldCheckAbsoluteValue()
                 {
-                    Func<IEnumerable<PrimePower>> f = () => Primes.Factorize(-3);
-                    f.Should().Throw<ArgumentOutOfRangeException>();
+                    const int n = 120;
+                    (-n).GetPrimeFactors().Should().BeEquivalentTo(n.GetPrimeFactors());
                 }
             }
 
@@ -108,7 +86,8 @@ namespace ProjectEuler.Tests.Math
                 [Test]
                 public void ShouldThrow()
                 {
-                    Func<IEnumerable<PrimePower>> f = () => Primes.Factorize(0);
+                    (22).GetPrimeFactors();
+                    Func<IEnumerable<PrimeFactor>> f = () => 0.GetPrimeFactors();
                     f.Should().Throw<ArgumentOutOfRangeException>();
                 }
             }
@@ -117,10 +96,9 @@ namespace ProjectEuler.Tests.Math
             public class AndNumberIsOne
             {
                 [Test]
-                public void ShouldThrow()
+                public void ShouldReturnEmptyCollection()
                 {
-                    Func<IEnumerable<PrimePower>> f = () => Primes.Factorize(1);
-                    f.Should().Throw<ArgumentOutOfRangeException>();
+                    1.GetPrimeFactors().Should().BeEmpty();
                 }
             }
 
@@ -130,11 +108,11 @@ namespace ProjectEuler.Tests.Math
                 [Test]
                 public void ShouldReturnWithPowerOne()
                 {
-                    PrimePower[] primePowers = Primes.Factorize(13).ToArray();
+                    PrimeFactor[] primePowers = 13.GetPrimeFactors().ToArray();
 
                     primePowers.Length.Should().Be(1);
                     primePowers[0].Prime.Should().Be(13);
-                    primePowers[0].Power.Should().Be(1);
+                    primePowers[0].Exponent.Should().Be(1);
                 }
             }
 
@@ -144,15 +122,15 @@ namespace ProjectEuler.Tests.Math
                 [Test]
                 public void ShouldReturnPrimePowerCollection()
                 {
-                    PrimePower[] primePowers = Primes.Factorize(369).ToArray();
+                    PrimeFactor[] primePowers = 369.GetPrimeFactors().ToArray();
 
                     primePowers.Length.Should().Be(2);
 
                     primePowers[0].Prime.Should().Be(3);
-                    primePowers[0].Power.Should().Be(2);
+                    primePowers[0].Exponent.Should().Be(2);
 
                     primePowers[1].Prime.Should().Be(41);
-                    primePowers[1].Power.Should().Be(1);
+                    primePowers[1].Exponent.Should().Be(1);
                 }
             }
 
@@ -162,7 +140,7 @@ namespace ProjectEuler.Tests.Math
                 [Test]
                 public void ShouldSucceed()
                 {
-                    Primes.Factorize(1000000).Should().NotBeEmpty();
+                    1000000.GetPrimeFactors().Should().NotBeEmpty();
                 }
             }
         }

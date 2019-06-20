@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using ProjectEuler.Math;
 
 namespace ProjectEuler.Problems
 {
@@ -7,37 +8,25 @@ namespace ProjectEuler.Problems
     /// </summary>
     public class Problem0024
     {
-        private readonly int[] _number = new int[10];
-        private int _counter;
-
         public object GetResult()
         {
-            LoopDigit(0);
+            const int permutationIndex = 1000000 - 1;
+            IReadOnlyList<int> factoradicDigits = permutationIndex.GetFactoradicDigits();
+
+            var digits = new List<int> { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+            var resultDigits = new List<int>();
+
+            foreach (int factoradicDigit in factoradicDigits)
+            {
+                resultDigits.Add(digits[factoradicDigit]);
+                digits.RemoveAt(factoradicDigit);
+            }
 
             long result = 0;
-            foreach (int digit in _number)
+            foreach (int digit in resultDigits)
                 result = result * 10 + digit;
 
             return result;
-        }
-
-        private void LoopDigit(int level)
-        {
-            for (int i = 0; i < 10; i++)
-            {
-                if (_counter == 1000000)
-                    break;
-                
-                if (_number.Take(level).Contains(i))
-                    continue;
-
-                _number[level] = i;
-
-                if (level < 9)
-                    LoopDigit(level + 1);
-                else
-                    _counter++;
-            }
         }
     }
 }

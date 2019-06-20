@@ -16,7 +16,7 @@ namespace ProjectEuler.Tests.Problems
                 var problem = new Problem0024();
                 object result = problem.GetResult();
 
-                result.Should().Be(2783915460);
+                result.Should().Be(2783915460L);
             }
         }
     }

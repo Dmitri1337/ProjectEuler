@@ -1,4 +1,7 @@
-﻿namespace ProjectEuler.Problems
+﻿using ProjectEuler.Math;
+using ProjectEuler.Math.Sequences;
+
+namespace ProjectEuler.Problems
 {
     /// <summary>
     ///     Sum square difference
@@ -7,18 +10,14 @@
     {
         public object GetResult()
         {
-            int sumOfSquares = 0;
-            int sum = 0;
+            const int termCount = 100;
 
-            for (int n = 1; n <= 100; n++)
-            {
-                sum += n;
-                sumOfSquares += n * n;
-            }
+            long sumOfSquares = new QuadraticSequence(1, 0, 0).GetSum(termCount);
+            long squareOfSum = new ArithmeticSequence(1, 1).GetSum(termCount).Square();
 
-            int squareOfSum = sum * sum;
+            long result = squareOfSum - sumOfSquares;
 
-            return squareOfSum - sumOfSquares;
+            return result;
         }
     }
 }
