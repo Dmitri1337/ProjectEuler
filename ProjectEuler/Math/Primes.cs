@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace ProjectEuler.Math
 {
@@ -11,8 +10,11 @@ namespace ProjectEuler.Math
 
         private static readonly BitArray Sieve = GetSieve();
 
-        public static bool IsPrime(int number)
+        public static bool IsPrime(this int number)
         {
+            if (number < 0)
+                number = -number;
+
             if (number < 2)
                 return false;
 
@@ -48,7 +50,7 @@ namespace ProjectEuler.Math
                     continue;
 
                 int power = 0;
-                
+
                 while (n % prime == 0)
                 {
                     power++;
@@ -68,7 +70,7 @@ namespace ProjectEuler.Math
                 throw new ArgumentOutOfRangeException(nameof(number), "Must be greater than zero.");
 
             var result = new List<int> { 1 };
-            int sqrt = (int)System.Math.Sqrt(number) + 1;
+            int sqrt = (int) System.Math.Sqrt(number) + 1;
 
             for (int i = 2; i < sqrt; i++)
             {

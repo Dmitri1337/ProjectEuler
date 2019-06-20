@@ -6,7 +6,7 @@ namespace ProjectEuler.Math
     {
         public PrimePower(int prime, int power)
         {
-            if (!Primes.IsPrime(prime))
+            if (!prime.IsPrime())
                 throw new ArgumentOutOfRangeException(nameof(prime), "Must be a prime number.");
 
             if (power < 1)
@@ -21,7 +21,7 @@ namespace ProjectEuler.Math
 
         public long ToLong()
         {
-            return (long) System.Math.Pow(Prime, Power);
+            return (long)System.Math.Pow(Prime, Power);
         }
     }
 }

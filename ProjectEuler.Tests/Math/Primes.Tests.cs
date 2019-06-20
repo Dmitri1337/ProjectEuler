@@ -14,22 +14,12 @@ namespace ProjectEuler.Tests.Math
         public class WhenCheckingForPrimality
         {
             [TestFixture]
-            public class AndNumberIsNegative
-            {
-                [Test]
-                public void ShouldReturnFalse()
-                {
-                    Primes.IsPrime(-3).Should().BeFalse();
-                }
-            }
-
-            [TestFixture]
             public class AndNumberIsZero
             {
                 [Test]
                 public void ShouldReturnFalse()
                 {
-                    Primes.IsPrime(0).Should().BeFalse();
+                    0.IsPrime().Should().BeFalse();
                 }
             }
 
@@ -39,7 +29,7 @@ namespace ProjectEuler.Tests.Math
                 [Test]
                 public void ShouldReturnFalse()
                 {
-                    Primes.IsPrime(1).Should().BeFalse();
+                    1.IsPrime().Should().BeFalse();
                 }
             }
 
@@ -49,13 +39,13 @@ namespace ProjectEuler.Tests.Math
                 [Test]
                 public void ShouldReturnTrue()
                 {
-                    Primes.IsPrime(2).Should().BeTrue();
-                    Primes.IsPrime(3).Should().BeTrue();
-                    Primes.IsPrime(5).Should().BeTrue();
-                    Primes.IsPrime(7).Should().BeTrue();
-                    Primes.IsPrime(11).Should().BeTrue();
-                    Primes.IsPrime(13).Should().BeTrue();
-                    Primes.IsPrime(17).Should().BeTrue();
+                    2.IsPrime().Should().BeTrue();
+                    3.IsPrime().Should().BeTrue();
+                    5.IsPrime().Should().BeTrue();
+                    7.IsPrime().Should().BeTrue();
+                    11.IsPrime().Should().BeTrue();
+                    13.IsPrime().Should().BeTrue();
+                    17.IsPrime().Should().BeTrue();
                 }
             }
 
@@ -65,13 +55,13 @@ namespace ProjectEuler.Tests.Math
                 [Test]
                 public void ShouldReturnFalse()
                 {
-                    Primes.IsPrime(4).Should().BeFalse();
-                    Primes.IsPrime(6).Should().BeFalse();
-                    Primes.IsPrime(8).Should().BeFalse();
-                    Primes.IsPrime(9).Should().BeFalse();
-                    Primes.IsPrime(10).Should().BeFalse();
-                    Primes.IsPrime(12).Should().BeFalse();
-                    Primes.IsPrime(14).Should().BeFalse();
+                    4.IsPrime().Should().BeFalse();
+                    6.IsPrime().Should().BeFalse();
+                    8.IsPrime().Should().BeFalse();
+                    9.IsPrime().Should().BeFalse();
+                    10.IsPrime().Should().BeFalse();
+                    12.IsPrime().Should().BeFalse();
+                    14.IsPrime().Should().BeFalse();
                 }
             }
 
@@ -81,7 +71,7 @@ namespace ProjectEuler.Tests.Math
                 [Test]
                 public void ShouldReturnFalse()
                 {
-                    Primes.IsPrime(1000000).Should().BeFalse();
+                    1000000.IsPrime().Should().BeFalse();
                 }
             }
 
@@ -91,7 +81,7 @@ namespace ProjectEuler.Tests.Math
                 [Test]
                 public void ShouldThrow()
                 {
-                    Func<bool> f = () => Primes.IsPrime(2000001);
+                    Func<bool> f = () => 2000001.IsPrime();
 
                     f.Should().Throw<ArgumentOutOfRangeException>();
                 }

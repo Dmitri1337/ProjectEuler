@@ -1,4 +1,4 @@
-﻿using ProjectEuler.Math;
+﻿using ProjectEuler.Math.Sequences;
 
 namespace ProjectEuler.Problems
 {
@@ -15,11 +15,11 @@ namespace ProjectEuler.Problems
             const int fivesCount = (max - 1) / 5;
             const int fifteensCount = (max - 1) / (3 * 5);
 
-            var threes = new ArithmeticProgression(3, 3);
-            var fives = new ArithmeticProgression(5, 5);
-            var fifteens = new ArithmeticProgression(15, 15);
+            var threes = new ArithmeticSequence(3, 3);
+            var fives = new ArithmeticSequence(5, 5);
+            var fifteens = new ArithmeticSequence(15, 15);
 
-            return (int) (threes.GetSum(threesCount) + fives.GetSum(fivesCount) - fifteens.GetSum(fifteensCount));
+            return (int)(threes.GetSum(threesCount) + fives.GetSum(fivesCount) - fifteens.GetSum(fifteensCount));
         }
     }
 }

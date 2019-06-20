@@ -16,7 +16,7 @@ namespace ProjectEuler.Problems
             {
                 currentNumber++;
 
-                if (Primes.IsPrime(currentNumber))
+                if (currentNumber.IsPrime())
                     primeCount++;
             }
 

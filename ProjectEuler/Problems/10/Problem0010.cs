@@ -14,7 +14,7 @@ namespace ProjectEuler.Problems
             // https://www.wolframalpha.com/input/?i=sum(primes+%3C%3D2000000)
 
             return Enumerable.Range(1, 2000000)
-                .Where(Primes.IsPrime)
+                .Where(x => x.IsPrime())
                 .Select(x => (long)x)
                 .Sum();
         }

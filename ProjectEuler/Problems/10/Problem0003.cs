@@ -14,7 +14,7 @@ namespace ProjectEuler.Problems
             int sqrNumber = (int) System.Math.Sqrt(number);
 
             for (int n = sqrNumber; n > 2; n--)
-                if (Primes.IsPrime(n) && number % n == 0)
+                if (n.IsPrime() && number % n == 0)
                     return n;
 
             return "unknown";
