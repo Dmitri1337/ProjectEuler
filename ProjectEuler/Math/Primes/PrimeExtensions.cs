@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace ProjectEuler.Math.Primes
 {
@@ -29,7 +30,7 @@ namespace ProjectEuler.Math.Primes
 
             int n = x;
 
-            for (int prime = 2; prime < EratosthenesSieveCapacity && n > 1; prime++)
+            for (int prime = 2; n > 1; prime++)
             {
                 if (!IsPrime(prime))
                     continue;
@@ -73,6 +74,30 @@ namespace ProjectEuler.Math.Primes
                 if (v != i)
                     yield return i;
             }
+        }
+
+        public static int GetDivisorsCount(this int x)
+        {
+            if (x < 0)
+                x = -x;
+
+            if (x == 0)
+                return 0;
+
+            if (x == 1)
+                return 1;
+
+            PrimeFactor[] primeFactors = x.GetPrimeFactors().ToArray();
+            int[] exponents = primeFactors.Select(y => y.Exponent + 1).ToArray();
+
+            int result = exponents.Aggregate(1, (a, b) => a * b);
+
+            return result;
+        }
+
+        public static int GetProperDivisorsCount(this int x)
+        {
+            return GetDivisorsCount(x) - 1;
         }
     }
 }
