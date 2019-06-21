@@ -62,6 +62,10 @@ namespace ProjectEuler.Tests.Math
                     10.IsPrime().Should().BeFalse();
                     12.IsPrime().Should().BeFalse();
                     14.IsPrime().Should().BeFalse();
+                    11619.IsPrime().Should().BeFalse();
+                    11621.IsPrime().Should().BeTrue();
+                    4004177.IsPrime().Should().BeFalse();
+                    4008203.IsPrime().Should().BeTrue();
                 }
             }
         }

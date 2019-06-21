@@ -7,8 +7,10 @@ namespace ProjectEuler.Math.Primes
     {
         private readonly BitArray _sieve;
         private readonly int _sieveCapacity;
+        private readonly int _sieveCapacitySquareRoot;
 
-        private int _sieveSize;
+        private int _lastProcessedNumber;
+        
 
         public EratosthenesSieve(int sieveCapacity)
         {
@@ -16,8 +18,10 @@ namespace ProjectEuler.Math.Primes
                 throw new ArgumentNullException(nameof(sieveCapacity), "Must be greater than zero.");
 
             _sieveCapacity = sieveCapacity;
+            _sieveCapacitySquareRoot = sieveCapacity.GetIntegerSquareRoot() + 1;
+
             _sieve = new BitArray(sieveCapacity, true) { [0] = false, [1] = false };
-            _sieveSize = 2;
+            _lastProcessedNumber = 1;
         }
 
         public bool IsPrime(int x)
@@ -29,22 +33,27 @@ namespace ProjectEuler.Math.Primes
                 throw new ArgumentOutOfRangeException(nameof(x),
                     $"Must be less than the specified sieve capacity ({_sieveCapacity})");
 
-            if (x >= _sieveSize)
-                ExpandSieve(x);
+            if (x > _lastProcessedNumber)
+                SieveNumbersUpTo(x);
 
             return _sieve[x];
         }
 
-        private void ExpandSieve(int newSieveSize)
+        private void SieveNumbersUpTo(int x)
         {
-            while (_sieveSize < newSieveSize)
+            while (_lastProcessedNumber < x)
             {
-                if (_sieve[_sieveSize])
-                    for (int i = _sieveSize * 2; i < _sieveCapacity; i += _sieveSize)
+                int nextNumber = _lastProcessedNumber + 1;
+
+                if (_sieve[nextNumber])
+                    for (int i = nextNumber * 2; i < _sieveCapacity; i += nextNumber)
                         _sieve[i] = false;
 
-                _sieveSize++;
+                _lastProcessedNumber++;
             }
+
+            if (_lastProcessedNumber >= _sieveCapacitySquareRoot)
+                _lastProcessedNumber = _sieveCapacity;
         }
     }
 }
