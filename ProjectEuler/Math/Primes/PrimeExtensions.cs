@@ -28,23 +28,48 @@ namespace ProjectEuler.Math.Primes
             if (x < 0)
                 x = -x;
 
+            if (x.IsPrime())
+            {
+                yield return new PrimeFactor(x, 1);
+                yield break;
+            }
+
             int n = x;
 
-            for (int prime = 2; n > 1; prime++)
+            for (int prime = 2; n > 1 && prime <= x.GetIntegerSquareRoot(); prime++)
             {
+                if (n.IsPrime())
+                {
+                    yield return new PrimeFactor(n, 1);
+                    yield break;
+                }
+
                 if (!IsPrime(prime))
                     continue;
 
                 int power = 0;
+                int divisor = 1;
+                int newDivisor = prime;
 
-                while (n % prime == 0)
+                //while (n % prime == 0)
+                //{
+
+                //    power++;
+                //    n /= prime;
+                //}
+
+                while (n % newDivisor == 0)
                 {
+                    divisor = newDivisor;
                     power++;
-                    n /= prime;
+                    newDivisor *= prime;
                 }
 
                 if (power > 0)
+                {
+                    n /= divisor;
                     yield return new PrimeFactor(prime, power);
+                }
             }
         }
 
@@ -93,11 +118,6 @@ namespace ProjectEuler.Math.Primes
             int result = exponents.Aggregate(1, (a, b) => a * b);
 
             return result;
-        }
-
-        public static int GetProperDivisorsCount(this int x)
-        {
-            return GetDivisorsCount(x) - 1;
         }
     }
 }
