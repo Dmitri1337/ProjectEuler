@@ -80,7 +80,7 @@ namespace ProjectEuler.Tests.Math
                 public void ShouldCheckAbsoluteValue()
                 {
                     const int n = 120;
-                    (-n).GetPrimeFactors().Should().BeEquivalentTo(n.GetPrimeFactors());
+                    (-n).Factorize().Should().BeEquivalentTo(n.Factorize());
                 }
             }
 
@@ -90,8 +90,7 @@ namespace ProjectEuler.Tests.Math
                 [Test]
                 public void ShouldThrow()
                 {
-                    (22).GetPrimeFactors();
-                    Func<IEnumerable<PrimeFactor>> f = () => 0.GetPrimeFactors();
+                    Func<IEnumerable<PrimeFactor>> f = () => 0.Factorize();
                     f.Should().Throw<ArgumentOutOfRangeException>();
                 }
             }
@@ -102,7 +101,7 @@ namespace ProjectEuler.Tests.Math
                 [Test]
                 public void ShouldReturnEmptyCollection()
                 {
-                    1.GetPrimeFactors().Should().BeEmpty();
+                    1.Factorize().Should().BeEmpty();
                 }
             }
 
@@ -112,7 +111,7 @@ namespace ProjectEuler.Tests.Math
                 [Test]
                 public void ShouldReturnWithPowerOne()
                 {
-                    PrimeFactor[] primePowers = 13.GetPrimeFactors().ToArray();
+                    PrimeFactor[] primePowers = 13.Factorize().ToArray();
 
                     primePowers.Length.Should().Be(1);
                     primePowers[0].Prime.Should().Be(13);
@@ -126,7 +125,7 @@ namespace ProjectEuler.Tests.Math
                 [Test]
                 public void ShouldReturnPrimePowerCollection()
                 {
-                    PrimeFactor[] primePowers = 369.GetPrimeFactors().ToArray();
+                    PrimeFactor[] primePowers = 369.Factorize().ToArray();
 
                     primePowers.Length.Should().Be(2);
 
@@ -144,7 +143,7 @@ namespace ProjectEuler.Tests.Math
                 [Test]
                 public void ShouldSucceed()
                 {
-                    1000000.GetPrimeFactors().Should().NotBeEmpty();
+                    1000000.Factorize().Should().NotBeEmpty();
                 }
             }
         }

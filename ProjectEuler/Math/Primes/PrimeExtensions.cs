@@ -15,12 +15,12 @@ namespace ProjectEuler.Math.Primes
             return Sieve.IsPrime(x);
         }
 
-        public static IEnumerable<PrimeFactor> GetPrimeFactors(this int x)
+        public static FactorizedNumber Factorize(this int x)
         {
             if (x == 0)
                 throw new ArgumentOutOfRangeException(nameof(x), "Cannot be zero.");
 
-            return GetPrimeFactorsInternal(x);
+            return new FactorizedNumber(GetPrimeFactorsInternal(x));
         }
 
         private static IEnumerable<PrimeFactor> GetPrimeFactorsInternal(int x)
@@ -50,13 +50,6 @@ namespace ProjectEuler.Math.Primes
                 int power = 0;
                 int divisor = 1;
                 int newDivisor = prime;
-
-                //while (n % prime == 0)
-                //{
-
-                //    power++;
-                //    n /= prime;
-                //}
 
                 while (n % newDivisor == 0)
                 {
@@ -112,9 +105,8 @@ namespace ProjectEuler.Math.Primes
             if (x == 1)
                 return 1;
 
-            PrimeFactor[] primeFactors = x.GetPrimeFactors().ToArray();
-            int[] exponents = primeFactors.Select(y => y.Exponent + 1).ToArray();
-
+            int[] exponents = x.Factorize().Select(y => y.Exponent + 1).ToArray();
+            
             int result = exponents.Aggregate(1, (a, b) => a * b);
 
             return result;

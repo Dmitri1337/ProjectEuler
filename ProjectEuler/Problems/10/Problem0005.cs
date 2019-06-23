@@ -13,7 +13,7 @@ namespace ProjectEuler.Problems
             const int max = 20;
 
             return Enumerable.Range(2, max - 1)
-                .SelectMany(x => x.GetPrimeFactors())
+                .SelectMany(x => x.Factorize())
                 .GroupBy(x => x.Prime)
                 .Select(x => x.OrderByDescending(y => y.Exponent).First())
                 .Select(x => x.ToLong())
