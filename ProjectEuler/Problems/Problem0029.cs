@@ -1,9 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
-using ProjectEuler.Benchmarks;
-using ProjectEuler.Math.Primes;
-using ProjectEuler.Math.Sequences;
 
 namespace ProjectEuler.Problems
 {
