@@ -19,9 +19,14 @@ namespace ProjectEuler.Math.Primes
         public int Prime { get; }
         public int Exponent { get; }
 
-        public long ToLong()
+        public long ToInt64()
         {
             return (long)System.Math.Pow(Prime, Exponent);
+        }
+
+        public int ToInt32()
+        {
+            return (int)System.Math.Pow(Prime, Exponent);
         }
 
         public bool Equals(PrimeFactor other)

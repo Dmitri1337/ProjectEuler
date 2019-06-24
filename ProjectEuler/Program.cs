@@ -7,11 +7,11 @@ namespace ProjectEuler
     {
         private static void Main()
         {
-            Console.Write("Calculating result...");
+            Console.Write("Calculating result... ");
 
-            object result = new Problem0030().GetResult();
+            object result = new Problem0026().GetResult();
 
-            Console.WriteLine($"Result: {result}");
+            Console.WriteLine(result);
             Console.WriteLine();
         }
     }

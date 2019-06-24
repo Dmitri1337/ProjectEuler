@@ -6,7 +6,7 @@ using ProjectEuler.Math.Primes;
 namespace ProjectEuler.Tests.Math
 {
     [TestFixture]
-    public class PrimePowerTests
+    public class PrimeFactorTests
     {
         [TestFixture]
         public class WhenInitializing
@@ -18,17 +18,6 @@ namespace ProjectEuler.Tests.Math
                 public void ShouldThrow()
                 {
                     Func<PrimeFactor> f = () => new PrimeFactor(4, 1);
-                    f.Should().Throw<ArgumentOutOfRangeException>();
-                }
-            }
-
-            [TestFixture]
-            public class AndPrimeArgumentIsMoreThanMillion
-            {
-                [Test]
-                public void ShouldThrow()
-                {
-                    Func<PrimeFactor> f = () => new PrimeFactor(15476899, 1);
                     f.Should().Throw<ArgumentOutOfRangeException>();
                 }
             }
@@ -73,9 +62,9 @@ namespace ProjectEuler.Tests.Math
             [Test]
             public void ShouldSucceed()
             {
-                new PrimeFactor(2, 1).ToLong().Should().Be(2);
-                new PrimeFactor(2, 4).ToLong().Should().Be(16);
-                new PrimeFactor(3, 5).ToLong().Should().Be(3 * 3 * 3 * 3 * 3);
+                new PrimeFactor(2, 1).ToInt64().Should().Be(2);
+                new PrimeFactor(2, 4).ToInt64().Should().Be(16);
+                new PrimeFactor(3, 5).ToInt64().Should().Be(3 * 3 * 3 * 3 * 3);
             }
         }
     }

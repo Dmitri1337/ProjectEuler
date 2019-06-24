@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using ProjectEuler.Math.Sequences;
 
 namespace ProjectEuler.Math.Primes
 {
@@ -28,25 +29,10 @@ namespace ProjectEuler.Math.Primes
             if (x < 0)
                 x = -x;
 
-            if (x.IsPrime())
-            {
-                yield return new PrimeFactor(x, 1);
-                yield break;
-            }
-
             int n = x;
 
-            for (int prime = 2; n > 1 && prime <= x.GetIntegerSquareRoot(); prime++)
+            foreach (int prime in new PrimeSequence())
             {
-                if (n.IsPrime())
-                {
-                    yield return new PrimeFactor(n, 1);
-                    yield break;
-                }
-
-                if (!IsPrime(prime))
-                    continue;
-
                 int power = 0;
                 int divisor = 1;
                 int newDivisor = prime;
@@ -63,6 +49,9 @@ namespace ProjectEuler.Math.Primes
                     n /= divisor;
                     yield return new PrimeFactor(prime, power);
                 }
+
+                if (n == 1)
+                    yield break;
             }
         }
 
@@ -106,7 +95,7 @@ namespace ProjectEuler.Math.Primes
                 return 1;
 
             int[] exponents = x.Factorize().Select(y => y.Exponent + 1).ToArray();
-            
+
             int result = exponents.Aggregate(1, (a, b) => a * b);
 
             return result;

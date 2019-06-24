@@ -16,7 +16,7 @@ namespace ProjectEuler.Problems
                 .SelectMany(x => x.Factorize())
                 .GroupBy(x => x.Prime)
                 .Select(x => x.OrderByDescending(y => y.Exponent).First())
-                .Select(x => x.ToLong())
+                .Select(x => x.ToInt64())
                 .Aggregate((long)1, (x, y) => x * y);
         }
     }

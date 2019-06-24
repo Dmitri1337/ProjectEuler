@@ -10,7 +10,6 @@ namespace ProjectEuler.Math.Primes
         private readonly int _sieveCapacitySquareRoot;
 
         private int _lastProcessedNumber;
-        
 
         public EratosthenesSieve(int sieveCapacity)
         {

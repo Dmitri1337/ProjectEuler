@@ -5,23 +5,13 @@ using System.Linq;
 
 namespace ProjectEuler.Math.Primes
 {
-    public class FactorizedNumber : IEnumerable<PrimeFactor>, IEquatable<FactorizedNumber>
+    public class FactorizedNumber : IReadOnlyList<PrimeFactor>, IEquatable<FactorizedNumber>
     {
         private readonly IList<PrimeFactor> _primeFactors;
 
         public FactorizedNumber(IEnumerable<PrimeFactor> primeFactors)
         {
             _primeFactors = new List<PrimeFactor>(primeFactors.OrderBy(x => x.Prime));
-        }
-
-        public IEnumerator<PrimeFactor> GetEnumerator()
-        {
-            return _primeFactors.GetEnumerator();
-        }
-
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return GetEnumerator();
         }
 
         public bool Equals(FactorizedNumber other)
@@ -42,12 +32,28 @@ namespace ProjectEuler.Math.Primes
             return true;
         }
 
-        public FactorizedNumber Power(int power)
+        public IEnumerator<PrimeFactor> GetEnumerator()
         {
-            IEnumerable<PrimeFactor> newPrimeFactors =
-                _primeFactors.Select(x => new PrimeFactor(x.Prime, x.Exponent * power));
+            return _primeFactors.GetEnumerator();
+        }
 
-            return new FactorizedNumber(newPrimeFactors);
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
+
+        public int Count => _primeFactors.Count;
+
+        public PrimeFactor this[int index] => _primeFactors[index];
+
+        public int ToInt32()
+        {
+            return _primeFactors.Aggregate(1, (current, factor) => current * factor.ToInt32());
+        }
+
+        public long ToInt64()
+        {
+            return _primeFactors.Aggregate(1L, (current, factor) => current * factor.ToInt64());
         }
 
         public override bool Equals(object obj)
