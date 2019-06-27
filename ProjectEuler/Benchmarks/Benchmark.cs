@@ -27,5 +27,14 @@ namespace ProjectEuler.Benchmarks
 
             return null;
         }
+
+        public static object Run(Func<object> action1, Func<object> action2, Func<object> action3, int iterationCount)
+        {
+            Run(action1, iterationCount);
+            Run(action2, iterationCount);
+            Run(action3, iterationCount);
+
+            return null;
+        }
     }
 }
