@@ -1,6 +1,6 @@
 ﻿namespace ProjectEuler.Math
 {
-    public static partial class XMath
+    public static partial class XXMath
     {
         public static int GreatestCommonDivisor(int a, int b)
         {

@@ -19,18 +19,18 @@ namespace ProjectEuler.Problems
 
         private static int GetReciprocalRepetendLength(int n)
         {
-            int gcd = XMath.GreatestCommonDivisor(10, n);
+            int gcd = XXMath.GreatestCommonDivisor(10, n);
 
             while (gcd != 1)
             {
                 n /= gcd;
-                gcd = XMath.GreatestCommonDivisor(10, n);
+                gcd = XXMath.GreatestCommonDivisor(10, n);
             }
 
             if (n == 1)
                 return 0;
 
-            return XMath.GetMultiplicativeOrder(10, n);
+            return XXMath.GetMultiplicativeOrder(10, n);
         }
     }
 }

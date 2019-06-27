@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Linq;
 using System.Numerics;
-using ProjectEuler.Math.Primes;
 
 namespace ProjectEuler.Math
 {
-    public static partial class XMath
+    public static partial class XXMath
     {
         /// <summary>
         ///     Calculates the order of <paramref name="m" /> modulo <paramref name="n" />. The order of an integer
@@ -20,7 +19,6 @@ namespace ProjectEuler.Math
 
             int totient = n.GetEulersTotient();
             int[] divisors = totient.GetProperDivisors().ToArray();
-            //int[] divisors2 = PrimeExtensions.GetProperDivisors(totient).OrderBy(x => x).ToArray();
 
             foreach (int divisor in divisors)
                 if (BigInteger.ModPow(m, divisor, n) == 1)

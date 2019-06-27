@@ -3,7 +3,7 @@ using ProjectEuler.Math.Primes;
 
 namespace ProjectEuler.Math
 {
-    public static partial class XMath
+    public static partial class XXMath
     {
         public static int GetEulersTotient(this int n)
         {
