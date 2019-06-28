@@ -27,10 +27,19 @@ namespace ProjectEuler.Problems
 
                     int multiplicand = d1 * 10 + d2;
 
-                    for (int d3 = 0; d3 <= 9876 / multiplicand / 1000; d3++)
+                    const int maxProduct = 9876;
+
+                    int maxMultiplier = maxProduct / multiplicand;
+
+                    for (int d3 = 0; d3 <= 9; d3++)
                     {
                         if (d3 > 0 && digits[d3])
                             continue;
+
+                        int d3Multiplier = d3 * 1000;
+
+                        if (d3Multiplier > maxMultiplier)
+                            break;
 
                         digits[d3] = true;
 
@@ -39,12 +48,20 @@ namespace ProjectEuler.Problems
                             if (digits[d4])
                                 continue;
 
+                            int d4Multiplier = d3Multiplier + d4 * 100;
+                            if (d4Multiplier > maxMultiplier)
+                                break;
+
                             digits[d4] = true;
 
                             for (int d5 = 1; d5 <= 9; d5++)
                             {
                                 if (digits[d5])
                                     continue;
+
+                                int d5Multiplier = d4Multiplier + d5 * 10;
+                                if (d5Multiplier > maxMultiplier)
+                                    break;
 
                                 digits[d5] = true;
 
@@ -53,16 +70,14 @@ namespace ProjectEuler.Problems
                                     if (digits[d6])
                                         continue;
 
+                                    int d6Multiplier = d5Multiplier + d6;
+                                    if (d6Multiplier > maxMultiplier)
+                                        break;
+
                                     digits[d6] = true;
 
                                     int multiplier = d3 * 1000 + d4 * 100 + d5 * 10 + d6;
                                     int product = multiplicand * multiplier;
-
-                                    if (product > 9876)
-                                    {
-                                        digits[d6] = false;
-                                        continue;
-                                    }
 
                                     bool isPandigital = true;
                                     digits.TryCopyTo(digitsWithProduct);
