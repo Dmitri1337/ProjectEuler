@@ -13,4 +13,5 @@
 	<s:Boolean x:Key="/Default/UserDictionary/Words/=precalculated/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/UserDictionary/Words/=Repend/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/UserDictionary/Words/=Repetend/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/UserDictionary/Words/=Summand/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/UserDictionary/Words/=Totient/@EntryIndexedValue">True</s:Boolean></wpf:ResourceDictionary>
